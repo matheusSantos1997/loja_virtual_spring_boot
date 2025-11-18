@@ -1,0 +1,87 @@
+package jdev.mentoria.lojavirtual.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "pessoa_juridica")
+public class PessoaJuridica extends Pessoa {
+    private String cnpj;
+
+    private String inscEstadual;
+
+    private String inscMunicipal;
+
+    private String nomeFantasia;
+
+    private String razaoSocial;
+
+    private String categoria;
+     
+    @OneToMany(mappedBy = "pessoaJuridica", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Endereco> enderecos = new ArrayList<Endereco>();
+
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getInscEstadual() {
+        return this.inscEstadual;
+    }
+
+    public void setInscEstadual(String inscEstadual) {
+        this.inscEstadual = inscEstadual;
+    }
+
+    public String getInscMunicipal() {
+        return this.inscMunicipal;
+    }
+
+    public void setInscMunicipal(String inscMunicipal) {
+        this.inscMunicipal = inscMunicipal;
+    }
+
+    public String getNomeFantasia() {
+        return this.nomeFantasia;
+    }
+
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
+
+    public String getRazaoSocial() {
+        return this.razaoSocial;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+    public String getCategoria() {
+        return this.categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return this.enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
+}

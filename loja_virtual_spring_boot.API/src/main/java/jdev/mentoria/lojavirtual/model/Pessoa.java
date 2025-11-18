@@ -1,0 +1,70 @@
+package jdev.mentoria.lojavirtual.model;
+
+import java.util.Objects;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.SequenceGenerator;
+
+@MappedSuperclass
+@SequenceGenerator(name = "seq_pessoa", sequenceName = "seq_pessoa", 
+initialValue = 1, allocationSize = 1)
+public abstract class Pessoa {
+   
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pessoa")
+    private Long id;
+    
+    private String nome;
+
+    private String email;
+
+    private String telefone;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return this.telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return Objects.equals(id, pessoa.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+}
