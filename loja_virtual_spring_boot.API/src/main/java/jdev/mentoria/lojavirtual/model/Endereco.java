@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jdev.mentoria.lojavirtual.enums.TipoEndereco;
 
 @Entity
 @Table(name = "endereco")
@@ -44,7 +47,17 @@ public class Endereco {
      @JoinColumn(name = "pessoa_juridica_id", nullable = true, foreignKey =
      @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_juridica_fk"))
      private PessoaJuridica pessoaJuridica;
+     
+     @Enumerated(EnumType.STRING)
+     private TipoEndereco tipoEndereco;
 
+    public TipoEndereco getTipoEndereco() {
+        return tipoEndereco;
+    }
+    
+    public void setTipoEndereco(TipoEndereco tipoEndereco){
+        this.tipoEndereco = tipoEndereco;
+    }
 
     public Long getId() {
         return this.id;
